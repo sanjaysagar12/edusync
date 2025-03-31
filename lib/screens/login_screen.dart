@@ -1,3 +1,4 @@
+import 'package:edusync/screens/teacher_dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'registration_screen.dart';
 import 'student_dashboard_screen.dart';
@@ -116,7 +117,16 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) => const StudentDashboardScreen(),
                             ),
                           );
-                        } else if (widget.role == 'parent') {
+                        } else if (widget.role == 'teacher') {
+                          print('Navigating to teacher Dashboard');
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const TeacherDashboardScreen(),
+                            ),
+                          );
+                        } 
+                        else if (widget.role == 'parent') {
                           print('Navigating to Parent Dashboard');
                           Navigator.pushReplacement(
                             context,
@@ -124,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) => const ParentDashboardScreen(),
                             ),
                           );
-                        } else {
+                        }else {
                           // If role doesn't match expected values, show error
                           print('Unknown role: ${widget.role}');
                           ScaffoldMessenger.of(context).showSnackBar(
