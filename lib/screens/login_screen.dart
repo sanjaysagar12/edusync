@@ -98,33 +98,54 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // Show success message
+                      // Print role for debugging
+                      print('Current role: ${widget.role}');
+                      
+                      // Show toast based on role for debugging
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('$roleTitle login successful')),
+                        SnackBar(content: Text('Attempting to navigate to $roleTitle dashboard')),
                       );
                       
-                      // Navigation based on role
-                      if (widget.role == 'student') {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const StudentDashboardScreen(),
-                          ),
-                        );
-                      } else if (widget.role == 'parent') {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ParentDashboardScreen(),
-                          ),
-                        );
-                      }
-                      // You can add conditions for other roles (teacher) here
+                      // Navigation based on role with delay to ensure snackbar is visible
+                      Future.delayed(const Duration(milliseconds: 500), () {
+                        if (widget.role == 'student') {
+                          print('Navigating to Student Dashboard');
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const StudentDashboardScreen(),
+                            ),
+                          );
+                        } else if (widget.role == 'parent') {
+                          print('Navigating to Parent Dashboard');
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ParentDashboardScreen(),
+                            ),
+                          );
+                        } else {
+                          // If role doesn't match expected values, show error
+                          print('Unknown role: ${widget.role}');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Error: Unknown role "${widget.role}"')),
+                          );
+                        }
+                      });
                     }
                   },
                   child: const Text('LOGIN', style: TextStyle(fontSize: 16)),
                 ),
                 const SizedBox(height: 24),
+                
+                // Current role indicator for debugging
+                Text(
+                  'Current role: ${widget.role}',
+                  style: TextStyle(color: Colors.grey),
+                  textAlign: TextAlign.center,
+                ),
+                
+                const SizedBox(height: 16),
                 
                 // Registration link
                 Row(
@@ -141,6 +162,49 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       child: const Text('Register'),
+                    ),
+                  ],
+                ),
+                
+                // Debug buttons for direct navigation testing
+                const SizedBox(height: 40),
+                const Text(
+                  'Debug Navigation',
+                  style: TextStyle(color: Colors.grey),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const StudentDashboardScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text('Student Dashboard'),
+                    ),
+                    const SizedBox(width: 16),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ParentDashboardScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text('Parent Dashboard'),
                     ),
                   ],
                 ),
