@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'registration_screen.dart';
 import 'student_dashboard_screen.dart';
+import 'parent_dashboard_screen.dart'; // Import the parent dashboard screen
 
 class LoginScreen extends StatefulWidget {
   final String role;
-
+  
   const LoginScreen({Key? key, required this.role}) : super(key: key);
 
   @override
@@ -26,9 +27,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     String roleTitle = widget.role[0].toUpperCase() + widget.role.substring(1);
-
+    
     return Scaffold(
-      appBar: AppBar(title: Text('$roleTitle Login'), elevation: 0),
+      appBar: AppBar(
+        title: Text('$roleTitle Login'),
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -40,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Header with icon
                 _buildRoleIcon(),
                 const SizedBox(height: 24),
-
+                
                 // Email field
                 TextFormField(
                   controller: _emailController,
@@ -60,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 const SizedBox(height: 16),
-
+                
                 // Password field
                 TextFormField(
                   controller: _passwordController,
@@ -77,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 const SizedBox(height: 8),
-
+                
                 // Forgot password
                 Align(
                   alignment: Alignment.centerRight,
@@ -89,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-
+                
                 // Login button
                 ElevatedButton(
                   onPressed: () {
@@ -98,25 +102,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('$roleTitle login successful')),
                       );
-
+                      
                       // Navigation based on role
-                      if (widget.role == 'student') {
-                        // Navigate to student dashboard and remove previous screens from stack
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) => const StudentDashboardScreen(),
-                          ),
-                        );
+                      switch(widget.role) {
+                        case 'student':
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const StudentDashboardScreen(),
+                            ),
+                          );
+                          break;
+                        case 'parent':
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ParentDashboardScreen(),
+                            ),
+                          );
+                          break;
+                        // You can add case for 'teacher' here
                       }
-                      // You can add conditions for other roles (teacher, parent) here
                     }
                   },
                   child: const Text('LOGIN', style: TextStyle(fontSize: 16)),
                 ),
                 const SizedBox(height: 24),
-
+                
                 // Registration link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -127,9 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder:
-                                (context) =>
-                                    RegistrationScreen(role: widget.role),
+                            builder: (context) => RegistrationScreen(role: widget.role),
                           ),
                         );
                       },
@@ -148,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildRoleIcon() {
     IconData iconData;
     Color color;
-
+    
     switch (widget.role) {
       case 'student':
         iconData = Icons.school;
@@ -169,11 +179,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Column(
       children: [
-        Icon(iconData, size: 80, color: color),
+        Icon(
+          iconData,
+          size: 80,
+          color: color,
+        ),
         const SizedBox(height: 16),
         Text(
           '${widget.role[0].toUpperCase()}${widget.role.substring(1)} Login',
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     );
