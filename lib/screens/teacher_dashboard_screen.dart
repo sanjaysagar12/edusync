@@ -10,7 +10,7 @@ class TeacherDashboardScreen extends StatefulWidget {
 
 class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
   int _selectedIndex = 0;
-  
+
   // Sample data
   final List<ClassSession> _todayClasses = [
     ClassSession(
@@ -233,50 +233,18 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             // Welcome section
             const Text(
               'Welcome, Professor Smith!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
               'Current Date: 2025-03-31',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(color: Colors.grey[600]),
             ),
             const SizedBox(height: 24),
-            
+
             // Quick Stats
             _buildStatsGrid(),
             const SizedBox(height: 24),
-            
-            // Today's Classes
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Today\'s Classes',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedIndex = 1; // Switch to Classes tab
-                      });
-                    },
-                    child: const Text('View All'),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
-            const SizedBox(height: 24),
-            
+
             // Pending Tasks
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -285,10 +253,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                 children: [
                   const Text(
                     'Pending Tasks',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   TextButton(
                     onPressed: () {
@@ -302,7 +267,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             const SizedBox(height: 8),
             ..._pendingTasks.map((task) => _buildTaskCard(task)),
             const SizedBox(height: 24),
-            
+
             // Student Messages
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -311,10 +276,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                 children: [
                   const Text(
                     'Recent Messages',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   TextButton(
                     onPressed: () {
@@ -344,35 +306,27 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             // Classes Header
             const Text(
               'Your Classes',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
               'Manage your classroom activities',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(color: Colors.grey[600]),
             ),
             const SizedBox(height: 24),
-            
+
             // Class Stats
             ..._classStats.map((stats) => _buildClassStatsCard(stats)),
             const SizedBox(height: 24),
-            
+
             // Weekly Schedule
             const Text(
               'Weekly Schedule',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             _buildWeeklySchedule(),
             const SizedBox(height: 24),
-            
+
             // Online Classes Button
             ElevatedButton.icon(
               onPressed: () {
@@ -381,7 +335,10 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
               icon: const Icon(Icons.video_call),
               label: const Text('Start Online Class'),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 24,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -405,19 +362,14 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             // Students Header
             const Text(
               'Your Students',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
               'Manage student records and performance',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(color: Colors.grey[600]),
             ),
             const SizedBox(height: 16),
-            
+
             // Class Selector
             DropdownButtonFormField<String>(
               decoration: const InputDecoration(
@@ -425,16 +377,25 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                 border: OutlineInputBorder(),
               ),
               items: const [
-                DropdownMenuItem(value: 'Mathematics 101', child: Text('Mathematics 101')),
-                DropdownMenuItem(value: 'Mathematics 202', child: Text('Mathematics 202')),
-                DropdownMenuItem(value: 'Mathematics 301', child: Text('Mathematics 301')),
+                DropdownMenuItem(
+                  value: 'Mathematics 101',
+                  child: Text('Mathematics 101'),
+                ),
+                DropdownMenuItem(
+                  value: 'Mathematics 202',
+                  child: Text('Mathematics 202'),
+                ),
+                DropdownMenuItem(
+                  value: 'Mathematics 301',
+                  child: Text('Mathematics 301'),
+                ),
               ],
               onChanged: (value) {
                 // Change selected class
               },
             ),
             const SizedBox(height: 24),
-            
+
             // Search and Filter Bar
             TextField(
               decoration: InputDecoration(
@@ -452,11 +413,11 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            
+
             // Student List
             _buildStudentList(),
             const SizedBox(height: 24),
-            
+
             // Send Announcement Button
             ElevatedButton.icon(
               onPressed: () {
@@ -465,7 +426,10 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
               icon: const Icon(Icons.announcement),
               label: const Text('Send Announcement'),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 24,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -488,19 +452,14 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             // Resources Header
             const Text(
               'Teaching Resources',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
               'Access and manage your teaching materials',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(color: Colors.grey[600]),
             ),
             const SizedBox(height: 24),
-            
+
             // Resource Categories
             GridView.count(
               crossAxisCount: 2,
@@ -536,14 +495,11 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
               ],
             ),
             const SizedBox(height: 24),
-            
+
             // Recent Resources
             const Text(
               'Recently Added Resources',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             _buildRecentResourcesList(),
@@ -561,50 +517,34 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        _buildStatCard(
-          'Classes Today',
-          '5',
-          Icons.class_outlined,
-          Colors.blue,
-        ),
-        _buildStatCard(
-          'Students',
-          '70',
-          Icons.people_outline,
-          Colors.green,
-        ),
+        _buildStatCard('Classes Today', '5', Icons.class_outlined, Colors.blue),
+        _buildStatCard('Students', '70', Icons.people_outline, Colors.green),
         _buildStatCard(
           'Pending Assignments',
           '12',
           Icons.assignment_outlined,
           Colors.orange,
         ),
-        _buildStatCard(
-          'Messages',
-          '3',
-          Icons.message_outlined,
-          Colors.purple,
-        ),
+        _buildStatCard('Messages', '3', Icons.message_outlined, Colors.purple),
       ],
     );
   }
-  
-  Widget _buildStatCard(String title, String value, IconData icon, Color color) {
+
+  Widget _buildStatCard(
+    String title,
+    String value,
+    IconData icon,
+    Color color,
+  ) {
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 32,
-              color: color,
-            ),
+            Icon(icon, size: 32, color: color),
             const SizedBox(height: 8),
             Text(
               value,
@@ -617,10 +557,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             const SizedBox(height: 4),
             Text(
               title,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               textAlign: TextAlign.center,
             ),
           ],
@@ -628,10 +565,11 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
       ),
     );
   }
+
   Widget _buildTaskCard(StudentTask task) {
     Color priorityColor;
     IconData priorityIcon;
-    
+
     switch (task.priority) {
       case TaskPriority.high:
         priorityColor = Colors.red;
@@ -650,9 +588,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
 
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: Icon(priorityIcon, color: priorityColor),
         title: Text(
@@ -673,9 +609,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
   Widget _buildMessageCard(StudentMessage message) {
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: CircleAvatar(
           child: Text(message.avatar),
@@ -692,10 +626,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
           children: [
             Text(
               message.time,
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(fontSize: 12, color: Colors.grey[600]),
             ),
             const SizedBox(height: 4),
             if (!message.isRead)
@@ -719,9 +650,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
   Widget _buildClassStatsCard(ClassStats stats) {
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -749,9 +678,17 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildClassStat('Students', stats.studentCount.toString(), Icons.people),
+                _buildClassStat(
+                  'Students',
+                  stats.studentCount.toString(),
+                  Icons.people,
+                ),
                 _buildClassStat('Avg. Grade', stats.averageGrade, Icons.grade),
-                _buildClassStat('Completion', '${stats.completionRate}%', Icons.check_circle),
+                _buildClassStat(
+                  'Completion',
+                  '${stats.completionRate}%',
+                  Icons.check_circle,
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -793,18 +730,9 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
         const SizedBox(height: 4),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
-          ),
-        ),
+        Text(title, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
       ],
     );
   }
@@ -831,7 +759,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
 
   Widget _buildDaySchedule(String day, String classes) {
     bool isToday = day == 'Mon'; // Assume Monday is today
-    
+
     return Container(
       width: 100,
       margin: const EdgeInsets.all(8),
@@ -921,9 +849,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             borderRadius: BorderRadius.circular(12),
           ),
           child: ListTile(
-            leading: CircleAvatar(
-              child: Text(student['avatar']),
-            ),
+            leading: CircleAvatar(child: Text(student['avatar'])),
             title: Text(
               student['name'],
               style: const TextStyle(fontWeight: FontWeight.bold),
@@ -933,15 +859,24 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
-                    color: student['grade'].startsWith('A') ? Colors.green[100] : Colors.blue[100],
+                    color:
+                        student['grade'].startsWith('A')
+                            ? Colors.green[100]
+                            : Colors.blue[100],
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
                     student['grade'],
                     style: TextStyle(
-                      color: student['grade'].startsWith('A') ? Colors.green[800] : Colors.blue[800],
+                      color:
+                          student['grade'].startsWith('A')
+                              ? Colors.green[800]
+                              : Colors.blue[800],
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -963,26 +898,25 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
     );
   }
 
-  Widget _buildResourceCategory(String title, IconData icon, Color color, int count) {
+  Widget _buildResourceCategory(
+    String title,
+    IconData icon,
+    Color color,
+    int count,
+  ) {
     return InkWell(
       onTap: () {
         // Open resource category
       },
       child: Card(
         elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: 40,
-                color: color,
-              ),
+              Icon(icon, size: 40, color: color),
               const SizedBox(height: 12),
               Text(
                 title,
@@ -995,10 +929,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
               const SizedBox(height: 4),
               Text(
                 '$count items',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
             ],
           ),
@@ -1074,7 +1005,9 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
               resource['name'],
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            subtitle: Text('${resource['type'].toUpperCase()} • ${resource['size']} • ${resource['date']}'),
+            subtitle: Text(
+              '${resource['type'].toUpperCase()} • ${resource['size']} • ${resource['date']}',
+            ),
             trailing: IconButton(
               icon: const Icon(Icons.more_vert),
               onPressed: () {
@@ -1256,9 +1189,18 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                   ),
                   items: const [
                     DropdownMenuItem(value: 'all', child: Text('All Classes')),
-                    DropdownMenuItem(value: 'math101', child: Text('Mathematics 101')),
-                    DropdownMenuItem(value: 'math202', child: Text('Mathematics 202')),
-                    DropdownMenuItem(value: 'math301', child: Text('Mathematics 301')),
+                    DropdownMenuItem(
+                      value: 'math101',
+                      child: Text('Mathematics 101'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'math202',
+                      child: Text('Mathematics 202'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'math301',
+                      child: Text('Mathematics 301'),
+                    ),
                   ],
                   onChanged: (value) {
                     // Set recipient class
@@ -1306,7 +1248,9 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                 Navigator.of(context).pop();
                 // Send announcement logic
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Announcement sent successfully!')),
+                  const SnackBar(
+                    content: Text('Announcement sent successfully!'),
+                  ),
                 );
               },
               child: const Text('Send'),
@@ -1340,9 +1284,18 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                     border: OutlineInputBorder(),
                   ),
                   items: const [
-                    DropdownMenuItem(value: 'lesson', child: Text('Lesson Plan')),
-                    DropdownMenuItem(value: 'worksheet', child: Text('Worksheet')),
-                    DropdownMenuItem(value: 'presentation', child: Text('Presentation')),
+                    DropdownMenuItem(
+                      value: 'lesson',
+                      child: Text('Lesson Plan'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'worksheet',
+                      child: Text('Worksheet'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'presentation',
+                      child: Text('Presentation'),
+                    ),
                     DropdownMenuItem(value: 'quiz', child: Text('Quiz/Test')),
                   ],
                   onChanged: (value) {
@@ -1357,9 +1310,18 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                   ),
                   items: const [
                     DropdownMenuItem(value: 'none', child: Text('None')),
-                    DropdownMenuItem(value: 'math101', child: Text('Mathematics 101')),
-                    DropdownMenuItem(value: 'math202', child: Text('Mathematics 202')),
-                    DropdownMenuItem(value: 'math301', child: Text('Mathematics 301')),
+                    DropdownMenuItem(
+                      value: 'math101',
+                      child: Text('Mathematics 101'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'math202',
+                      child: Text('Mathematics 202'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'math301',
+                      child: Text('Mathematics 301'),
+                    ),
                   ],
                   onChanged: (value) {
                     // Set associated class
@@ -1429,10 +1391,7 @@ class ClassMaterial {
   final String name;
   final String type;
 
-  ClassMaterial({
-    required this.name,
-    required this.type,
-  });
+  ClassMaterial({required this.name, required this.type});
 }
 
 enum TaskPriority { high, medium, low }
