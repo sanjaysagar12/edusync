@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'registration_screen.dart';
 import 'student_dashboard_screen.dart';
-import 'parent_dashboard_screen.dart'; // Import the parent dashboard screen
+import 'parent_dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final String role;
@@ -104,25 +104,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                       
                       // Navigation based on role
-                      switch(widget.role) {
-                        case 'student':
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const StudentDashboardScreen(),
-                            ),
-                          );
-                          break;
-                        case 'parent':
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ParentDashboardScreen(),
-                            ),
-                          );
-                          break;
-                        // You can add case for 'teacher' here
+                      if (widget.role == 'student') {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const StudentDashboardScreen(),
+                          ),
+                        );
+                      } else if (widget.role == 'parent') {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ParentDashboardScreen(),
+                          ),
+                        );
                       }
+                      // You can add conditions for other roles (teacher) here
                     }
                   },
                   child: const Text('LOGIN', style: TextStyle(fontSize: 16)),
